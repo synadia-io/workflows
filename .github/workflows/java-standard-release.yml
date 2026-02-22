@@ -1,4 +1,4 @@
-name: Reusable Workflow Release Build
+name: Java Standard Release Build
 
 on:
   workflow_call:

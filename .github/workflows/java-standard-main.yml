@@ -1,4 +1,4 @@
-name: Reusable Workflow Main Snapshot Build
+name: Java Standard Main Snapshot Build
 
 on:
   workflow_call:
