@@ -4,7 +4,8 @@ on:
   workflow_call:
     inputs:
       project-dir:
-        required: true
+        description: 'only use for a project in a subdirectory'
+        required: false
         type: string
 
 jobs:

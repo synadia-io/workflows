@@ -4,8 +4,14 @@ on:
   workflow_call:
     inputs:
       project-dir:
-        required: true
+        description: 'only use for a project in a subdirectory'
+        required: false
         type: string
+      coverage:
+        description: 'true if should run coverage steps.'
+        type: boolean
+        required: false
+        default: false
 
 jobs:
   build:
@@ -43,6 +49,15 @@ jobs:
       - name: Verify Javadoc
         run: |
           ./gradlew javadoc
+      - name: Run Jacoco Test Report
+        if: ${{ inputs.coverage }}
+        run: |
+          ./gradlew jacocoTestReport
+      - name: Send coverage to Coveralls
+        if: ${{ inputs.coverage }}
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.COVERALLS_REPO_TOKEN }}
       - name: Publish Snapshot
         run: |
           ./gradlew -i publishToSonatype
