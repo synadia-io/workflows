@@ -28,7 +28,7 @@ GitHub Docs [reuse-workflows](https://docs.github.com/en/actions/how-tos/reuse-a
 * | Inputs      | Description                          | Required | Default | PR | Main | Release |
   |-------------|--------------------------------------|----------|---------|:--:|:----:|:-------:|
   | project-dir | path for a project in a subdirectory | no       | ignored | ✓  |  ✓   |    ✓    |
-* | coverage    | true if should run coverage step     | no       | false   | ✓  |  ✓   |         |
+  | coverage    | true if should run coverage step     | no       | false   | ✓  |  ✓   |         |
 
 * | Behavior                         | PR | Main | Release |
   |----------------------------------|:--:|:----:|:-------:|
