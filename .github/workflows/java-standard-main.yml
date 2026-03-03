@@ -4,11 +4,11 @@ on:
   workflow_call:
     inputs:
       project-dir:
-        description: 'only use for a project in a subdirectory'
+        description: 'path for a project in a subdirectory'
         required: false
         type: string
       coverage:
-        description: 'true if should run coverage steps.'
+        description: 'true if should run coverage steps'
         type: boolean
         required: false
         default: false
