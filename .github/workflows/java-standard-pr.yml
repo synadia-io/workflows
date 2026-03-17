@@ -35,14 +35,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
       - name: Install Nats Server
-        run: |
-          pkill -9 nats-server 2>/dev/null || true
-          mkdir -p ~/.local/bin
-          cd $GITHUB_WORKSPACE
-          git clone https://github.com/nats-io/nats-server.git
-          cd nats-server
-          go build -o ~/.local/bin/nats-server
-          nats-server -v
+        uses: ./.github/actions/install_nats_server
       - name: Build and Test
         run: |
           chmod +x gradlew && ./gradlew clean test
@@ -58,6 +51,6 @@ jobs:
         uses: coverallsapp/github-action@v2
         with:
           github-token: ${{ secrets.COVERALLS_REPO_TOKEN }}
-      - name: Clean up Nats Server
+      - name: Shutdown Nats Servers
         if: always()
         run: pkill -9 nats-server 2>/dev/null || true

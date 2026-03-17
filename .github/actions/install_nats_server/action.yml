@@ -1,0 +1,25 @@
+name: 'Install Nats Server'
+description: 'Builds and installs nats-server from source'
+
+inputs:
+  tag:
+    description: 'nats-server git tag to build (e.g. v2.10.24). Defaults to latest on main.'
+    required: false
+    default: ''
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Nats Server
+      shell: bash
+      run: |
+        pkill -9 nats-server 2>/dev/null || true
+        mkdir -p ~/.local/bin
+        cd $GITHUB_WORKSPACE
+        git clone https://github.com/nats-io/nats-server.git
+        cd nats-server
+        if [ -n "${{ inputs.tag }}" ]; then
+          git checkout ${{ inputs.tag }}
+        fi
+        go build -o ~/.local/bin/nats-server
+        nats-server -v
