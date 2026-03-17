@@ -44,6 +44,6 @@ jobs:
       - name: Verify, Sign and Publish Release
         run: |
           ./gradlew -i publishToSonatype closeAndReleaseSonatypeStagingRepository
-      - name: Clean up
+      - name: Clean up Nats Server
         if: always()
         run: pkill -9 nats-server 2>/dev/null || true
