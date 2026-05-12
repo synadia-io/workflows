@@ -30,7 +30,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
       - name: Install Nats Server
-        uses: ./.github/actions/install_nats_server
+        uses: synadia-io/workflows/.github/actions/install_nats_server@main
       - name: Compile and Test
         run: |
           chmod +x gradlew && ./gradlew clean test
